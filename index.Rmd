@@ -69,7 +69,6 @@ body {
 Average reflectance values for a handful of tree crown training polygons extracted using the ENVI ROI Tool. Mean relflectance as a function of VNIR wavelengths plot in R using ggplot:
 
 <br>
-- Remote Sensing of the Environment III Research Project Poster (2016):
 <img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/spectra.png" style="width:100%">
 <br>
 
