@@ -1,0 +1,154 @@
+---
+title: Lauren Sharwood
+author: Remote Sensing Analyst
+output: 
+  html_document:
+    theme: journal
+    highlight: tango
+---
+
+
+      
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Hi there! 
+
+<html>
+<head>
+<style>
+body {
+  background-color: Azure;
+  color: DarkSlateGray;
+}
+</style>
+</head>
+<body>
+
+
+<img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/AboutMe.jpg"
+         alt="AboutMe" 
+         align="right"
+         width: 50%;
+        height: auto>
+
+<p style="font-size:19px"> I'm Lauren (she/her), a Remote Sensing Analyst with a M.S. in Geography and 6+ years experience working with GIS. I currently live in Portland, OR and enjoy exploring the PNW with my pandemic pup, Ruthie.</br></br> I'm passionate about integrating geospatial data products and machine learning algorithms to monitor the environment. As an aspiring polymath, I'm always challenging myself to learn new skills and techniques. </br></br></br></p>
+
+         
+</body>
+</html>
+
+### Resume
+
+<img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/resume_CL.png" style="width:100%">
+
+
+### Research Projects
+
+- Master's Thesis (2021): [**Modeling Environmental Factors Related to Drought-Induced Tree Mortality Based on Lidar and Hyperspectral Imagery**](https://pdxscholar.library.pdx.edu/cgi/viewcontent.cgi?article=6946&context=open_access_etds)
+<br>
+
+- Spatial Quantitative Analysis II Lab Presentation (2018):  [**Random Forest Classification**](https://web.pdx.edu/~lshar2/Geog597/597_SharwoodL_Lab7.html#/)
+<br>
+
+- Spatial Quantitative Analysis II Lab Presentation (2018): [**Spatial Hedonic Regression**](https://web.pdx.edu/~lshar2/Geog597/597_SharwoodL_Labs5_6.html#/)
+<br>
+
+- Remote Sensing of the Environment III Research Project Poster (2016):
+<img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/115c.png" style="width:100%">
+<br>
+
+- Geographic Information Systems III Research Project Poster (2016):
+<img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/176c.jpg" style="width:100%">
+
+
+### Spectral Plotter
+Average reflectance values for a handful of tree crown training polygons extracted using the ENVI ROI Tool. Mean relflectance as a function of VNIR wavelengths plot in R using ggplot:
+
+<br>
+- Remote Sensing of the Environment III Research Project Poster (2016):
+<img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/spectra.png" style="width:100%">
+<br>
+
+
+### Web Mapping Fun 
+
+Interactive Leaflet web map I'm making of some of my favorite restaurants, coffee shops, and breweries around PDX:
+
+
+
+```{r fig.width=12, fig.height=10, fig.align='center', warning=FALSE,error=FALSE,echo=F, message=FALSE}
+
+suppressPackageStartupMessages(require(leaflet))
+suppressPackageStartupMessages(require(leaflet.extras))
+
+
+bars <- read.csv('/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/bars.csv')
+
+beer_bars <- dplyr::filter(bars, Type == "Bar")
+food_bars <- dplyr::filter(bars, Type == "Food")
+coffee_bars <- dplyr::filter(bars, Type == "Coffee")
+
+pal <- colorFactor(palette = c("royalblue1", "firebrick", "darkolivegreen"),
+                   levels = c("Bar", "Food", "Coffee"))
+
+pdx_bars <-   
+  leaflet(bars) %>%
+  addSearchOSM() %>%
+  addTiles(group = "OSM") %>%
+  addProviderTiles("Esri", group = "Esri") %>%
+  addCircleMarkers(data = beer_bars,
+                   radius = 4, 
+                   group = "Bar",
+                   color = ~pal(Type),
+                   weight = 2,
+                   stroke = TRUE,
+                   fillOpacity = 0.8,
+                   label = ~paste0(place),
+                   labelOptions = labelOptions(noHide = F, textOnly = FALSE, textsize = "14px"),
+                   popup = ~paste0( "<b>", "<a href=", website, ">", place, "</a>","</b>", "<br/>", notes1, "<br/>", notes2)) %>%
+  addCircleMarkers(data = food_bars,
+                   radius = 4, 
+                   group = "Food",
+                   color = ~pal(Type),
+                   weight = 2,
+                   stroke = TRUE,
+                   fillOpacity = 0.8,
+                   label = ~paste0(place),
+                   labelOptions = labelOptions(noHide = F, textOnly = FALSE, textsize = "14px"),
+                   popup = ~paste0( "<b>", "<a href=", website, ">", place, "</a>","</b>", "<br/>", notes1, "<br/>", notes2))  %>% 
+  addCircleMarkers(data = coffee_bars,
+                   radius = 4, 
+                   group = "Coffee",
+                   color = ~pal(Type),
+                   weight = 2,
+                   stroke = TRUE,
+                   fillOpacity = 0.8,
+                   label = ~paste0(place),
+                   labelOptions = labelOptions(noHide = F, textOnly = FALSE, textsize = "14px"),
+                   popup = ~paste0( "<b>", "<a href=", website, ">", place, "</a>","</b>", "<br/>", notes1, "<br/>", notes2))   %>%
+  addLayersControl(baseGroups = c("OSM", "Esri"),
+                   overlayGroups = c("Bar", "Food", "Coffee"),
+                   position = "topleft")
+htmlwidgets::saveWidget(pdx_bars,"./pdx_bars.html")
+
+pdx_bars
+
+```
+
+<iframe  title="My Map" width="980" height="400" src=" https://github.com/laurensharwood/laurensharwood.github.io/pdx_bars.html" frameborder="0" allowfullscreen></iframe>
+
+
+### There Goes My Baby&I API
+
+Ruthie's running routes collected through Strava API (incoming...)
+<img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/Ruthie.jpg" style="width:100%">
+<br>
+
+### Contact
+[**Linkedin**](https://www.linkedin.com/in/lauren-sharwood-902677140/) <br> 
+laurensharwood13@gmail.com
+
