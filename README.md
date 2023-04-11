@@ -238,6 +238,10 @@ I’m Lauren (she/her), a Remote Sensing Analyst with a M.S. in Geography and 6+
 <div id="there-goes-my-babyi-api" class="section level3">
 <h3>There Goes My Baby&amp;I API</h3>
 <p>Ruthie’s running routes collected through Strava API (incoming…) <img src="files/Ruthie.jpg" style="width:100%"> <br></p>
+<iframe src="pdx_3d.html" height="500" width="500"></iframe>
+
+
+
 </div>
 <div id="contact" class="section level3">
 <h3>Contact</h3>
