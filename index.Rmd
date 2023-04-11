@@ -156,9 +156,12 @@ pdx_bars
 
 ### There Goes My Baby&I API
 
-Ruthie's running routes and mileage progression collected through Strava API (incoming...)
-<img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/Ruthie.jpg" style="width:100%">
+<img src="/Users/laurensharwood/Desktop/portfolio/laurensharwood.github.io/files/Ruthie.jpg" height="500" style="width:500">
+<iframe src="pdx_3d.html" height="50%" width="50%"></iframe>
+<iframe src="sb_3d.html" height="50%" width="50%"></iframe>
+
 <br>
+
 
 ### Contact
 [**Linkedin**](https://www.linkedin.com/in/lauren-sharwood-902677140/) <br> 
