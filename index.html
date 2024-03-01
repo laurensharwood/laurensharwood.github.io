@@ -265,7 +265,9 @@ body {
 <h3>Greenness-Climate</h3>
 <p>NDMI1 (NIR-SWIR1/NIR+SWIR1) measures low-density vegetation greenness from Sentinel-2 surface reflectace images with brdf corrections <br></p>
 <p>Time-series of agricultural field greenness with <a href="https://www.chc.ucsb.edu/data/chirtsdaily">temperature</a> and <a href="https://www.chc.ucsb.edu/data/chirps/">precipitation</a> over time <br></p>
-<iframe src="files/stac_vs_gee_NDMI1_climate.html" frameborder="0" scrolling="no" onload="resizeIframe(this)" ></iframe>
+<iframe src="files/stac_vs_gee_NDMI1_climate.html" sandbox="allow-same-origin"
+        onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';">
+</iframe>
 </div>
 <div id="Route & About" class="section level3">
     <h3>Route & About</h3>
