@@ -408,20 +408,24 @@ def cal_heatmap(df, columnName):
     events = pd.Series([i for i in df[columnName]], 
                        index=[i for i in df['PST'].astype('datetime64[ns]')])
     calplot.calplot(events, suptitle="running "+columnName+" per day", cmap='YlOrBr', colorbar=True)
-    pyplot.savefig(os.path.join("out", columnName+'_heatCal.png'))
+    pyplot.savefig(os.path.join(running_fig_dir, columnName+'_heatCal.png'))
 
 
 ######################################################################
 ## make sure mac is turned on to run every day at 6:30am
 ## > crontab -e (to edit/create job)
 ## Vim (Esc:wq to save): 
-## 30 6 * * * /Desktop/running_project/get_garmin.py
+## 30 6 * * * Desktop/running_project/get_garmin.py
 ## > crontab -l (to check)
 def main():
     '''
-    cd to directory of script / project directory
+    cd to directory of script / project directory, run script from that directory
+    
     '''
     num_days=1 ##sys.argv[1]  
+    project_dir=os.path.join("Desktop", "running_project")
+
+    
     file_types=[".tcx", ".gpx", ".csv", ".zip"]
 
     # Load environment variables if defined
@@ -434,17 +438,18 @@ def main():
     startdate = today - timedelta(days=num_days)  
     
     YYYYMMDD = today.strftime("%Y%m%d")
-    out_dir = os.path.join(os.getcwd(), YYYYMMDD)
+    out_dir = os.path.join(project_dir, YYYYMMDD)
     print(f"Saving files in ...\n'{out_dir}'")
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
         
-    archive_dir = os.path.join(out_dir.replace(os.path.basename(out_dir), ""), "archive")
+    archive_dir = os.path.join(project_dir, "archive")
     if not os.path.exists(archive_dir):
         os.makedirs(archive_dir)
-    fig_dir = os.path.join(out_dir.replace(os.path.basename(out_dir), ""), "out")
-    if not os.path.exists(fig_dir):
-        os.makedirs(fig_dir)        
+    global running_fig_dir
+    running_fig_dir = os.path.join(project_dir, "out")
+    if not os.path.exists(running_fig_dir):
+        os.makedirs(running_fig_dir)        
         
     ## 1) download from garmin
     
@@ -471,6 +476,7 @@ def main():
         for file in move_files:
             os.rename(os.path.join(out_dir, file), os.path.join(archive_dir, file))
     ## merge csvs
+    print(archive_dir)
     oldG=os.path.join(archive_dir, "allGPX_archive.csv")
     if os.path.exists(oldG):
         old_GPX = pd.read_csv(oldG, index_col="file")
@@ -488,7 +494,7 @@ def main():
 
     ## 3) figs
     ## route heatmap
-    plot_heatmap(Gdf, os.path.join(fig_dir, "heatmap.html"))    
+    plot_heatmap(Gdf, os.path.join(running_fig_dir, "heatmap.html"))    
     
     ## 3d routes (set smaller bounds)
     min_lon = -119.98
@@ -496,7 +502,7 @@ def main():
     min_lat = 34.3
     max_lat = 34.5
     df = Gdf[(Gdf['lat'] > min_lat) & (Gdf['lat'] < max_lat) & (Gdf['lon'] > min_lon) & (Gdf['lon'] < max_lon)]
-    plot3D(df, os.path.join(fig_dir, "route3d.html"))    
+    plot3D(df, os.path.join(running_fig_dir, "route3d.html"))    
 
     ## calendar heatmap
     cal_heatmap(Tdf, "miles")
