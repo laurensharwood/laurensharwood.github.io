@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<title></title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="site_libs/fuse_js-3.2.0/fuse_js-prod.js"></script>
+<link href="site_libs/lfx-search-2.3.7/lfx-search-prod.css" rel="stylesheet" />
+<script src="site_libs/lfx-search-2.3.7/lfx-search-prod.js"></script>
+<script src="site_libs/lfx-search-2.3.7/lfx-search-bindings.js"></script>
+<script src="site_libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="site_libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+
+<script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+<style type="text/css">
+h1 {
+  font-size: 65px;
+}
+h1.title {
+  font-size: 65px;
+}
+h2 {
+  font-size: 45px;
+}
+h3 {
+  font-size: 40px;
+}
+h4 {
+  font-size: 24px;
+}
+h5 {
+  font-size: 18px;
+}
+h6 {
+  font-size: 14px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+
+@media screen and (max-width: 800px) {
+    iframe {
+        max-width: 100% !important;
+        width: auto !important;
+        height: auto !important;
+    }
+}
+
+  
+</style>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 1000px;
+  min-height: 80px;
+  overflow-y: auto;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  display: inline-block;
+  padding: 20px;
+  border-right: 2px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  display: inline-block;
+  padding: 20px;
+  border-right: 2px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<body>
+  
+<div class="fluid-row" id="header">
+<h1 class="title toc-ignore"><center><font size="60">Lauren Sharwood</font></center></h1>
+<h5 class="author"><em><center>Sr. GIS Analyst / </center></em></h5>
+<h5 class="author"><em><center>Remote Sensing Assoc. Specialist</center></em></h5>
+</div>
+
+<div id="hi-there" class="section level2 tabset">
+<h3>Welcome</h3>
+<head>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<style>
+body {
+  background-color: Azure;  
+  color: DarkSlateGray; 
+  font-family:"Roboto", 
+  sans-serif;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+  color: #545454;
+  max-width: 1500px;
+  box-sizing: border-box;
+}
+</style>
+</head>
+<p style="font-size: 16px">
+<img src="files/grassmtn.png" alt="AboutMe"  align="right" width="30%" height="600px">
+My name is Lauren (she/her/hers); I am a self-motivated and systems-thinking Senior GIS Analyst / Associate Remote Sensing Specialist with eight years of professional experience calibrating, managing, analyzing, and visualizing geospatial data.   
+  I am driven to provide the most efficient, accurate, and interpretable geospatial solutions that promote environmental and social sustainability.
+  In my spare time I love to run and explore the outdoors with my pup, Ruthie. 
+  In the tabs below I highlight some past research, class projects, and web maps I've made for fun. 
+  Please feel free to reach out at <a href="mailto:laurensharwood@gmail.com" target="_blank">laurensharwood@gmail.com</a> or connect with me on <a href="https://www.linkedin.com/in/lauren-sharwood-902677140/" target="_blank">Linkedin</a>.
+<iframe name="iframe1" id="iframe1" src="files/SBmap.html"  style="width:70%;min-height:500px;border:none;overflow-y:auto;overflow-x:hidden;" onload="this.style.height=(this.contentDocument.body.scrollHeight+5) +'px';"></iframe>
+</p>
+
+<div id="running" class="section level3">
+<h3>Running</h3>
+
+<a href="https://github.com/laurensharwood/activity_maps/blob/main/" target="_blank">Instructions</a> to create the (above & below) figures from your Garmin activities using a Google Colab Notebook or Cron job scheduler.    
+  
+<br><br>
+
+<h4>SB in 3D</h4>
+My running routes from above, with elevation plotted in 3D: <i>Goleta is a pancake</i><br><br>
+<iframe name="iframe2" id="iframe2" src="files/sb3dee4.html"  style="width:100%;min-height:450px;border:none;overflow-y:auto;overflow-x:hidden;" onload="this.style.height=(this.contentDocument.body.scrollHeight+10) +'px';"></iframe>
+<h4>Stacking Bricks:</h4>
+Heatmap calendars of distance run in miles (above) and elevation gained in meters (below):<br><br> 
+  <img src="files/heatmapCal.png" alt="heatmap calendars" width="80%" height="500px"><br><br>
+<br><br><br>
+
+  
+</div>
+
+<div id="pdxfun" class="section level3">
+<h3>PDX favs</h3>
+<h4>Where do you wanna eat?</h4>
+Interactive Leaflet web map of some of my favorite restaurants, coffee shops, and breweries around PDX:
+<div id="htmlwidget-26530e69b6c71759f490" style="width:75%;height:500px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-26530e69b6c71759f490">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addSearchOSM","args":[{"url":"","propertyLoc":"loc","propertyName":"title","moveToLocation":true,"zoom":17,"container":"","minLength":2,"initial":true,"casesensitive":false,"autoType":true,"delayType":400,"tooltipLimit":-1,"tipAutoSubmit":true,"firstTipSubmit":false,"autoResize":true,"collapsed":true,"autoCollapse":true,"autoCollapseTime":1200,"textErr":"Location Not Found","textCancel":"Cancel","textPlaceholder":"Search...","position":"topleft","hideMarkerOnCollapse":false}]},{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,"OSM",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["Esri",null,"Esri",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[45.49646763,45.51934493,45.51187543,45.50661148,45.48527953,45.52674854,45.48772467,45.54002993,45.53476021,45.54736661,45.49514337,45.51197931,45.51664826,45.51642056,45.50455202,45.49006411,45.5046555,45.49348043,45.52627877,45.51561664,45.5288812,45.5046995,45.50476418,45.55896824,45.55889275,45.55408962,45.55451628,45.51635054,45.5165621,45.5194263,45.4631112,45.47904219,45.51995912,45.53973785,45.53787543,45.52456221,45.52522484,45.51851685,45.52972504,45.51744025,45.46584034,45.46418683,45.47390962,45.47384708,45.50804195,45.51627203,45.52580018,45.52669817,45.49215455,45.47931439,45.49077455,45.49102256,45.48929634,45.4860429],[-122.6270293,-122.5834051,-122.6175882,-122.6549044,-122.6392664,-122.5917151,-122.6482399,-122.6686042,-122.6681773,-122.6750628,-122.6075916,-122.6555792,-122.6559101,-122.6594627,-122.6292021,-122.6199956,-122.6533092,-122.6237897,-122.636373,-122.6535324,-122.643723,-122.6337319,-122.645486,-122.6411515,-122.6425976,-122.6757033,-122.675664,-122.6385864,-122.6377456,-122.6363302,-122.6528251,-122.6176879,-122.6765117,-122.7089526,-122.7002876,-122.6942143,-122.6945875,-122.6939196,-122.6851605,-122.6902851,-122.6475045,-122.6591169,-122.6488779,-122.6483766,-122.658545,-122.6554589,-122.6373512,-122.591717,-122.6022436,-122.6146321,-122.5989972,-122.6004362,-122.5955186,-122.5885087],6,null,"Bar",{"interactive":true,"className":"","stroke":true,"color":["#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1"],"weight":3,"opacity":0.5,"fill":true,"fillColor":["#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1","#00CED1"],"fillOpacity":0.8},null,null,["<b><a href=https://www.google.com/maps/place/John's+Marketplace+Powell/@45.4965225,-122.6270169,20.23z/data=!3m1!5s0x5495a07eab09a9ff:0x592c3c68d2a941fa!4m5!3m4!1s0x5495a122daa6f11f:0x2df783aa03383034!8m2!3d45.4965108!4d-122.6270698>John's Marketplace Powell<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Montavilla+Brew+Works/@45.519234,-122.5834672,18.51z/data=!4m12!1m6!3m5!1s0x5495a101315f0677:0x5ae3304e17893e31!2sMontavilla+Brew+Works!8m2!3d45.5193172!4d-122.5834044!3m4!1s0x5495a101315f0677:0x5ae3304e17893e31!8m2!3d45.5193172!4d-122.5834044>Montavilla Brew Works<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Ancestry+Brewing/@45.5114625,-122.6224529,16.42z/data=!3m1!5s0x5495a0f324919965:0x4836526d89980e6f!4m9!1m2!2m1!1sAncestry+Brewing!3m5!1s0x5495a1af87194101:0x500792ef3dc456aa!8m2!3d45.5118575!4d-122.6175915!15sChBBbmNlc3RyeSBCcmV3aW5nIgOIAQFaEiIQYW5jZXN0cnkgYnJld2luZ5IBB2JyZXdwdWI>Ancestry Brewing<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Baerlic+Brewery+%26+Taproom/@45.5066692,-122.6571384,17z/data=!3m2!4b1!5s0x54950a76ec9de3dd:0x449701a7a1312c0!4m5!3m4!1s0x54950a76ec3aa8f5:0x9c870222f0c83e0b!8m2!3d45.5066692!4d-122.6549444>Baerlic Brewery & Taproom<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&sxsrf=AOaemvIc6y0xUfx-gFWs-cHpR7bimVVzMw:1639425973819&q=gigantic+brewing&rflfq=1&num=10&ved=2ahUKEwjr4rfWyeH0AhVKHjQIHcffBC4QtgN6BAgPEAc#rlfi=hd:;si:5009898793922683578;mv:[[45.48686527894153,-122.63681971160783],[45.48436807973207,-122.64065527049912],null,[45.48561669317425,-122.63873749105348],18]>Gigantic Brewing<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Gigantic+Brewing+Robot+Room/@45.5266666,-122.5917446,21z/data=!4m12!1m6!3m5!1s0x5495a1775f90b021:0xc3032ff61ce6fae7!2sGigantic+Brewing+Robot+Room!8m2!3d45.5266957!4d-122.5917413!3m4!1s0x5495a1775f90b021:0xc3032ff61ce6fae7!8m2!3d45.5266957!4d-122.5917413>Gigantic Brewing<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Ruse+Brewing/@45.4877096,-122.6504325,17z/data=!3m2!4b1!5s0x54950a8ee0477aa1:0xf0eef39ff1249f6d!4m5!3m4!1s0x54950a8f1d96fd51:0xed36ee9287bb5867!8m2!3d45.4877096!4d-122.6482385>Ruse Brewing<\/a><\/b><br/>Inside Seating<br/>","<b><a href=https://www.google.com/search?tbs=lf:1,lf_ui:4&tbm=lcl&sxsrf=AOaemvKiagiC51t3Q7VXe7GCLI1NfTNCuw:1639427117347&q=ex+novo&rflfq=1&num=10&ved=2ahUKEwjVl9v3zeH0AhU0LTQIHd5mCzIQtgN6BAg9EAc#rlfi=hd:;si:1916910384105281776;mv:[[45.55096914004018,-122.65055270145263],[45.52887619662675,-122.70518343175377],null,[45.53992375345935,-122.6778680666032],15]>Ex Novo<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Upright+Brewing/@45.5305118,-122.6685054,14.8z/data=!3m1!5s0x5495a754f0dfd2b3:0xb33c2aea0103a48!4m8!1m2!2m1!1sex+novo!3m4!1s0x5495a752169ca263:0xb7906c040673335c!8m2!3d45.5347161!4d-122.6681866>Upright Brewing Co<\/a><\/b><br/>Inside Seating<br/>","<b><a href=https://www.google.com/maps/place/Ecliptic+Brewing/@45.5473366,-122.6772528,17z/data=!3m1!4b1!4m5!3m4!1s0x5495a74230a24473:0x3f0dd246d4fe4e90!8m2!3d45.5473366!4d-122.6750641>Ecliptic Brewing<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Thunderbird+Bar/@45.4951641,-122.6097583,17z/data=!3m2!4b1!5s0x5495a06f2e7af0b5:0xbf525f36c48e25ca!4m5!3m4!1s0x5495a06f2e5ae7b7:0xe216997ea179f35a!8m2!3d45.4951331!4d-122.6075912>Thunderbird Bar<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Away+Days+Brewing+Co/@45.5123445,-122.6564571,17.51z/data=!3m1!5s0x5495a09fdff3c127:0xd262f8738000c2ff!4m5!3m4!1s0x5495a198315a1763:0x8e2808c478307403!8m2!3d45.5119731!4d-122.6555745>Away Days<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Cascade+Brewing+Barrel+House/@45.5177711,-122.6596204,17.02z/data=!4m5!3m4!1s0x0:0x471c418efc2ec652!8m2!3d45.5166508!4d-122.6558434>Cascade Brewing Barrel House<\/a><\/b><br/>Patio<br/>Sours","<b><a href=https://www.google.com/maps/place/Modern+Times+Beer+-+Belmont+Fermentorium/@45.5164473,-122.6593687,18.97z/data=!3m1!5s0x5495a0a0be822389:0x29e1318334721b9b!4m12!1m6!3m5!1s0x5495a0a0bfd7612b:0xb27a691a69901007!2sModern+Times+Beer+-+Belmont+Fermentorium!8m2!3d45.5164149!4d-122.6594657!3m4!1s0x5495a0a0bfd7612b:0xb27a691a69901007!8m2!3d45.5164149!4d-122.6594657>Modern Times<\/a><\/b><br/>Inside Seating<br/>","<b><a href=https://www.google.com/maps/place/Little+Beast+Brewing+Beer+Garden/@45.504537,-122.6313927,17z/data=!3m2!4b1!5s0x5495a0863cd7f15b:0xcad65cb363c13015!4m5!3m4!1s0x5495a1cda2508c69:0x4ca8c18d3f5f3f84!8m2!3d45.504537!4d-122.629204>Little Beast Brewing<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/13th+Moon+Gravity+Well/@45.4900186,-122.620261,21z/data=!4m8!1m2!2m1!1sbreakside!3m4!1s0x0:0x3499c626bff59dd5!8m2!3d45.4900629!4d-122.6199948>13th Moon Gravity Well<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/APEX/@45.5047177,-122.6536528,19.69z/data=!3m1!5s0x54950a7741396df5:0x2597e353d50d6d3a!4m5!3m4!1s0x54950a77417c717b:0x7dbc1d5f87bd3906!8m2!3d45.5046517!4d-122.6533125>APEX Bar<\/a><\/b><br/>Patio<br/>CA$H ONLY","<b><a href=https://www.google.com/maps/place/Gladstone+Street+Pub/@45.4934581,-122.6259872,17z/data=!3m2!4b1!5s0x5495a0798d6a7745:0xf101a81295b3f418!4m5!3m4!1s0x5495a0798d5cc631:0x9eedc1d1829ef5fc!8m2!3d45.4934665!4d-122.6237908>Gladstone Street Pub<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Migration+Brewing+-+Glisan/@45.5267041,-122.6363112,16.13z/data=!3m1!5s0x5495a0c76868925d:0xde662c0b064171a!4m5!3m4!1s0x5495a0c767e76cc7:0xa6d7bc167f4333cc!8m2!3d45.526222!4d-122.63643>Migration Brewing<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/A+Roadside+Attraction/@45.5147078,-122.6531889,16.81z/data=!3m1!5s0x5495a0a1958fd7cf:0x46959a6a6fcde332!4m5!3m4!1s0x5495a0a1be201687:0xf690efb2a55a6918!8m2!3d45.5156513!4d-122.6534324>A Roadside Attraction<\/a><\/b><br/>Patio<br/>CA$H ONLY","<b><a href=https://www.google.com/maps/place/Culmination+Brewing/@45.5270059,-122.64376,16.32z/data=!3m1!5s0x5495a0b7966d47fd:0x47af42882deae904!4m12!1m6!3m5!1s0x5495a0b7961479e7:0x65fd79186494dae6!2sCulmination+Brewing!8m2!3d45.5289176!4d-122.6436628!3m4!1s0x5495a0b7961479e7:0x65fd79186494dae6!8m2!3d45.5289176!4d-122.6436628>Culmination Brewing<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Imperial+Bottle+Shop+%26+Taproom/@45.5057084,-122.634988,17.09z/data=!3m1!5s0x5495a08427403ac7:0xe202bade28e27596!4m9!1m2!2m1!1sImperial+Bottle+Shop+%26+Taproom!3m5!1s0x5495a0842845f7ed:0x5fef160bc7ea2379!8m2!3d45.5046899!4d-122.6337317!15sCh5JbXBlcmlhbCBCb3R0bGUgU2hvcCAmIFRhcHJvb20iA4gBAVogIh5pbXBlcmlhbCBib3R0bGUgc2hvcCAmIHRhcHJvb22SAQNiYXI>Imperial Bottle Shop & Taproom<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Double+Barrel+Tavern/@45.5049801,-122.6463498,18.79z/data=!3m1!5s0x5495a08298fcb885:0x75bce943b5a1c5cc!4m5!3m4!1s0x5495a11d9580dfdb:0x80fb01922fe2de45!8m2!3d45.5047374!4d-122.6454653>Double Barrel Tavern<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/CRUZROOM/@45.5590366,-122.6414079,19.39z/data=!4m5!3m4!1s0x5495a6dfea45eaa7:0x2642353ab2de3d6f!8m2!3d45.5589658!4d-122.6411527>CRUZROOM<\/a><\/b><br/>Covered Patio<br/>","<b><a href=https://www.google.com/maps/place/Great+Notion+Brewing+-+Alberta/@45.5588867,-122.6428701,19.43z/data=!4m5!3m4!1s0x5495a6dff7ce49d1:0x560dd6f5f54e1bb0!8m2!3d45.5588585!4d-122.6426192>Great Notion Brewing<\/a><\/b><br/>Covered Patio<br/>Sours","<b><a href=https://www.google.com/maps/place/The+Rambler/@45.5540047,-122.6755015,19.53z/data=!3m1!5s0x5495a76b60db0a67:0xef7483cf60e194cf!4m12!1m6!3m5!1s0x5495a76a4c4ec463:0xa13fff0343ed5bf!2sMississippi+Studios!8m2!3d45.5514423!4d-122.6756694!3m4!1s0x5495a76b61204467:0xfae14c65184a0756!8m2!3d45.5540718!4d-122.675706>The Rambler<\/a><\/b><br/>Covered Patio<br/>","<b><a href=https://www.google.com/maps/place/Prost!/@45.5538624,-122.6752079,17.05z/data=!3m1!5s0x5495a76ca0f7aea1:0x5c7b75d2419c8474!4m12!1m6!3m5!1s0x5495a76ca1b38353:0xf04aa767a40c54c6!2sProst*21!8m2!3d45.5545085!4d-122.6757052!3m4!1s0x5495a76ca1b38353:0xf04aa767a40c54c6!8m2!3d45.5545085!4d-122.6757052>Prost!<\/a><\/b><br/>Covered Patio<br/>","<b><a href=https://www.google.com/maps/place/The+Vern/@45.51633,-122.6391743,18.97z/data=!3m1!5s0x5495a097aa3e965f:0x6d707c72c63a5745!4m12!1m6!3m5!1s0x5495a04c3de68bd1:0xb7873ecee4585442!2sHA+%26+VL+Vietnamese+Noodle+Soup!8m2!3d45.5026581!4d-122.578503!3m4!1s0x5495a1f0c7e81ba3:0xda5908754d914573!8m2!3d45.5163498!4d-122.6385908>The Vern<\/a><\/b><br/>Beer<br/>","<b><a href=https://www.google.com/maps/place/The+Nest/@45.5167073,-122.63735,18z/data=!3m1!5s0x5495a09657e18313:0xf36dd7b6a162a1d5!4m12!1m6!3m5!1s0x5495a04c3de68bd1:0xb7873ecee4585442!2sHA+%26+VL+Vietnamese+Noodle+Soup!8m2!3d45.5026581!4d-122.578503!3m4!1s0x5495a09657e8c905:0x2ecfc8698fa532a!8m2!3d45.5166047!4d-122.6377583>The Nest<\/a><\/b><br/>Beer<br/>","<b><a href=https://www.google.com/maps/place/The+Goodfoot+%7C+Music,+DJs,+Art,+and+Food+since+2001/@45.5192452,-122.637084,17.87z/data=!4m5!3m4!1s0x5495a095f6d8ce53:0xf60e4ed82f571307!8m2!3d45.5194981!4d-122.6363726>The Goodfoot<\/a><\/b><br/>Beer<br/>","<b><a href=https://www.google.com/maps/place/Ancestry+Brewing/@45.4631316,-122.6530261,18.06z/data=!3m1!5s0x54950ada678a6ac3:0x724ff15df6cb6a2b!4m12!1m6!3m5!1s0x5495a0be1546ebc9:0x832e41ac3be7a500!2sKen's+Artisan+Pizza!8m2!3d45.520579!4d-122.6370642!3m4!1s0x54950ada5ce7f745:0x462a66b2ff890d21!8m2!3d45.4631009!4d-122.65283>Ancestry Brewing<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Double+Mountain+Taproom/@45.4791435,-122.6183554,17.77z/data=!3m1!5s0x54950aa1281478bb:0x3ffaf936ac000943!4m5!3m4!1s0x54950aa0d84467e9:0x519fbe5a612b8434!8m2!3d45.4790288!4d-122.6176892>Double Mountain Taproom<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Kelly's+Olympian/@45.5198268,-122.6765953,18.76z/data=!3m1!5s0x54950a0434d0e119:0x9a0821514d4664f2!4m5!3m4!1s0x54950b75f65d4b7f:0xc0acd0540fef6c73!8m2!3d45.5199546!4d-122.6765139>Kelly's Olympian<\/a><\/b><br/>Inside Seating<br/>","<b><a href=https://www.google.com/maps/place/Great+Notion+Brewing+NW/@45.5378755,-122.7094239,16.17z/data=!3m1!5s0x549509dd49b342c7:0xf2c5345dd78ce64!4m5!3m4!1s0x549509eba48517b9:0x4213a2f625234a69!8m2!3d45.5397285!4d-122.7089528>Great Notion Brewing NW<\/a><\/b><br/>Inside Seating<br/>Sours","<b><a href=https://www.google.com/maps/place/Hammer+%26+Stitch+Brewing+Co./@45.5371497,-122.700817,17.64z/data=!4m5!3m4!1s0x549509e97a93a423:0x5fef85486bbc2fe0!8m2!3d45.5378595!4d-122.7002893>Hammer & Stitch Brewing Co<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Kells+Brewery/@45.5247762,-122.6944866,18.45z/data=!3m1!5s0x549509f7aca451d5:0x930e23159f29f43a!4m5!3m4!1s0x0:0x9d7dabd68543a79a!8m2!3d45.5245064!4d-122.6942117>Kells Brewery<\/a><\/b><br/>Irish Pub<br/>Private Booth","<b><a href=https://www.google.com/maps/place/Lightning+Will+Bar+%26+Grill/@45.5251211,-122.6940871,18.7z/data=!3m1!5s0x549509f703a390a9:0xc927fdcd98d857f5!4m5!3m4!1s0x549509f703a6b7ad:0xebe28492088d7cee!8m2!3d45.525204!4d-122.6945966>Lightning Will <\/a><\/b><br/>Inside Seating<br/>","<b><a href=https://www.google.com/maps/place/Goose+Hollow+Inn/@45.5185417,-122.6933042,18.67z/data=!3m1!5s0x54950a1eebd64867:0xdf600f37815394bc!4m5!3m4!1s0x54950a1ee9a9513f:0x83c7eb4e6421de6d!8m2!3d45.5184833!4d-122.6938973>Goose Hollow Inn<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Botanist/@45.5297123,-122.6842925,17.94z/data=!4m5!3m4!1s0x5495095170333763:0x8205bcd2b5455b16!8m2!3d45.5296468!4d-122.6851529>Botanist<\/a><\/b><br/>Rooftop <br/>","<b><a href=https://www.google.com/maps/place/Leaky+Roof+Gastro+Pub/@45.5174534,-122.6907459,19.04z/data=!3m1!5s0x54950a195761a843:0x4f5e2097c81b5f85!4m5!3m4!1s0x54950a1959b5a173:0xf70da2277ac995e8!8m2!3d45.517438!4d-122.6902988>Leaky Roof <\/a><\/b><br/>Inside Seating<br/>","<b><a href=https://www.google.com/maps/place/Moreland+Ale+House/@45.4658541,-122.6476317,19.39z/data=!3m1!5s0x54950ac51d28339d:0xe240fffff221af39!4m5!3m4!1s0x54950ac51ce3752b:0xa4fe332e8c808401!8m2!3d45.465858!4d-122.647633>Moreland Ale House<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/The+Muddy+Rudder+Public+House/@45.4643637,-122.658988,18.04z/data=!3m1!5s0x54950ad945a9f33d:0x90706ad45e0d2a80!4m5!3m4!1s0x54950ad969dfc471:0xcb58c44632337455!8m2!3d45.464224!4d-122.6591951>The Muddy Rudder Public House<\/a><\/b><br/>Inside Seating<br/>","<b><a href=https://www.google.com/maps/place/Kay's+Bar/@45.4738791,-122.6490553,18.87z/data=!3m1!5s0x54950aea71356399:0xe2f3ccf7eb7751b4!4m5!3m4!1s0x54950aea70ce4e45:0xacef9be8c5ed9af6!8m2!3d45.4739062!4d-122.6488808>Kay's Bar<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Corkscrew+Wine+Bar/@45.4738467,-122.6489349,18.43z/data=!3m1!5s0x54950aea7b9b8b03:0x6532d1f8f61ed9cd!4m5!3m4!1s0x54950aea78147ef7:0xcca623f4b8bc55a1!8m2!3d45.473852!4d-122.6483812>Corkscrew Wine Bar<\/a><\/b><br/>Inside Seating<br/>","<b><a href=https://www.google.com/maps/place/Ground+Breaker+Brewing+and+Gastropub/@45.5080304,-122.6588306,19.22z/data=!4m5!3m4!1s0x54950a740fa3a3e3:0xf54be47989bd5c42!8m2!3d45.5080414!4d-122.6585419>Ground Breaker Brewing and Gastropub<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Schilling+Cider+House+%26+Gluten+Free+Kitchen/@45.5161975,-122.6559804,18.57z/data=!4m5!3m4!1s0x5495a0a1065fcc77:0xbb0ee30e89a686bd!8m2!3d45.5162641!4d-122.6554553>Schilling Cider House<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Stammtisch/@45.5260083,-122.6373863,18.22z/data=!3m1!5s0x5495a0b8a1deda9f:0xcb73d9db107feea3!4m5!3m4!1s0x5495a0b89f687e89:0x533a5177b25363a8!8m2!3d45.5258613!4d-122.6374505>Stammtisch<\/a><\/b><br/>German Bar & Restaurant<br/>","<b><a href=https://www.google.com/maps/place/Gigantic+Brewing+Robot+Room/@45.52663,-122.5916071,19.02z/data=!4m5!3m4!1s0x5495a1775f90b021:0xc3032ff61ce6fae7!8m2!3d45.5266957!4d-122.5917413>Gigantic Brewing Robot Room<\/a><\/b><br/>Patio<br/>","<b><a href=https://www.google.com/maps/place/Fopo+Tavern/@45.4921494,-122.602419,18.59z/data=!3m1!5s0x5495a06b8ea0ecdd:0x89781623598564e1!4m5!3m4!1s0x5495a06b8eb89027:0x2de8c6fb92053656!8m2!3d45.4921444!4d-122.6022365>FoPo Tavern<\/a><\/b><br/>Outside Seating<br/>Jello Shots","<b><a href=https://www.google.com/maps/place/Lutz+Tavern/@45.4794818,-122.6143177,18.3z/data=!3m1!5s0x54950aa0ad6c13f5:0x74a35d466e5fc507!4m5!3m4!1s0x54950aa0ad347c75:0x1f6bbf96d6e416be!8m2!3d45.4793022!4d-122.6146314>Lutz Tavern<\/a><\/b><br/>Outside Seating<br/>","<b><a href=https://www.google.com/maps/place/Bar+Maven/@45.4908288,-122.5991968,18.64z/data=!4m5!3m4!1s0x5495a06b6aa56ef1:0x1ba0c7f10d9ca011!8m2!3d45.4907669!4d-122.598983>Bar Maven<\/a><\/b><br/><br/>","<b><a href=https://www.google.com/maps/place/Assembly+Brewing/@45.4910268,-122.6003928,18.65z/data=!3m1!5s0x5495a06b657aff39:0xf6a95926316b0985!4m5!3m4!1s0x5495a114f56e428d:0x6d6001b4595363a0!8m2!3d45.4909048!4d-122.6004509>Assembly Brewing<\/a><\/b><br/>Patio<br/>Detroit-style pizza","<b><a href=https://www.google.com/maps/place/Starday+Tavern/@45.4892583,-122.5957523,18.7z/data=!4m5!3m4!1s0x5495a014e765381d:0x20e64f3c60feedf7!8m2!3d45.4892948!4d-122.5955117>Starday Tavern<\/a><\/b><br/>Inside Seating<br/>Live Music","<b><a href=https://www.google.com/maps/place/Barrio/@45.4861076,-122.5883784,19.8z/data=!4m5!3m4!1s0x5495a0164744443b:0x6ccfc032ac5b5ec9!8m2!3d45.4860354!4d-122.588509>Barrio<\/a><\/b><br/>Outside Seating<br/>Wine Bar"],null,["John's Marketplace Powell","Montavilla Brew Works","Ancestry Brewing","Baerlic Brewery &amp; Taproom","Gigantic Brewing","Gigantic Brewing","Ruse Brewing","Ex Novo","Upright Brewing Co","Ecliptic Brewing","Thunderbird Bar","Away Days","Cascade Brewing Barrel House","Modern Times","Little Beast Brewing","13th Moon Gravity Well","APEX Bar","Gladstone Street Pub","Migration Brewing","A Roadside Attraction","Culmination Brewing","Imperial Bottle Shop &amp; Taproom","Double Barrel Tavern","CRUZROOM","Great Notion Brewing","The Rambler","Prost!","The Vern","The Nest","The Goodfoot","Ancestry Brewing","Double Mountain Taproom","Kelly's Olympian","Great Notion Brewing NW","Hammer &amp; Stitch Brewing Co","Kells Brewery","Lightning Will ","Goose Hollow Inn","Botanist","Leaky Roof ","Moreland Ale House","The Muddy Rudder Public House","Kay's Bar","Corkscrew Wine Bar","Ground Breaker Brewing and Gastropub","Schilling Cider House","Stammtisch","Gigantic Brewing Robot Room","FoPo Tavern","Lutz Tavern","Bar Maven","Assembly Brewing","Starday Tavern","Barrio"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"14px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[[45.51573834,45.51329381,45.50470101,45.52445867,45.52058727,45.50670159,45.50463083,45.52300554,45.49346422,45.49319948,45.51763393,45.54940794,45.51195355,45.51215408,45.5121249,45.50467814,45.50497235,45.55899163,45.55069815,45.55153641,45.54843294,45.54821223,45.4970788,45.49716813,45.50267088,45.49731344,45.51667267,45.51631872,45.51942882,45.46587049,45.48040469,45.51120269,45.52693077,45.51520454,45.47902987,45.52467073,45.52223672,45.53673134,45.52946568,45.53498727,45.52634416,45.52130256,45.52104941,45.52038886,45.5222079,45.46491935,45.46442485,45.46800572,45.46875029,45.51949694,45.52673925,45.49257543,45.49243244,45.5051616,45.51213036,45.52320366,45.49576859,45.49513866,45.47909346],[-122.654549,-122.6544712,-122.610899,-122.6371178,-122.6370594,-122.6549672,-122.6546025,-122.6416453,-122.6234154,-122.6227594,-122.6514169,-122.6665283,-122.6426209,-122.6276446,-122.6131343,-122.643941,-122.6442115,-122.6427401,-122.666501,-122.6757311,-122.613791,-122.6170537,-122.5772681,-122.5966729,-122.5785086,-122.6082058,-122.6422828,-122.6392419,-122.6364748,-122.6532196,-122.6496383,-122.6538139,-122.6467921,-122.6643922,-122.6196935,-122.6726448,-122.6759442,-122.7053412,-122.6944035,-122.6988956,-122.6845855,-122.6835055,-122.6834903,-122.6734124,-122.6738111,-122.6471906,-122.6524025,-122.6532528,-122.6527046,-122.6552881,-122.5847928,-122.6016402,-122.602098,-122.6151441,-122.6105753,-122.6153135,-122.6084663,-122.6072741,-122.6181543],6,null,"Food",{"interactive":true,"className":"","stroke":true,"color":["#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD"],"weight":3,"opacity":0.5,"fill":true,"fillColor":["#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD","#0000CD"],"fillOpacity":0.8},null,null,["<b><a href=https://www.google.com/maps/place/Kachka/@45.515842,-122.6561125,17.38z/data=!3m1!5s0x5495a0a1bacad177:0xbdc7f0532de53bd0!4m12!1m6!3m5!1s0x5495a0a7485bfdcd:0x859a3a4e9e7497eb!2sKachka!8m2!3d45.515737!4d-122.654557!3m4!1s0x5495a0a7485bfdcd:0x859a3a4e9e7497eb!8m2!3d45.515737!4d-122.654557>Kachka<\/a><\/b><br/>Russian<br/>","<b><a href=https://www.google.com/maps/place/Nicholas+Restaurant+Lebanese+and+Mediterranean+Cuisine/@45.5148484,-122.6495262,15.83z/data=!4m5!3m4!1s0x5495a0a6459996b7:0x85487e1fc1dd102a!8m2!3d45.5132838!4d-122.6544759>Nicholas<\/a><\/b><br/>Lebanese and Mediterranean <br/>","<b><a href=https://www.google.com/maps/place/Bete-Lukas+%7C+Ethiopian+Restaurant/@45.5051728,-122.6113402,17.1z/data=!4m5!3m4!1s0x5495a0607a81f393:0x5d2847ec720ead0e!8m2!3d45.5047376!4d-122.6108222>Bete-Lukas<\/a><\/b><br/>Ethiopian<br/>","<b><a href=https://www.google.com/maps/place/G%C3%BCero/@45.524583,-122.6385185,17.05z/data=!3m1!5s0x5495a0c7ba3dd6a7:0x7ee523bcabc0a57b!4m5!3m4!1s0x5495a0be57da22db:0x36051eca18f8f166!8m2!3d45.5244553!4d-122.6370698>Guero<\/a><\/b><br/>Mexican (Tortas)<br/>","<b><a href=https://www.google.com/maps/place/Ken's+Artisan+Pizza/@45.5206536,-122.6377489,18.45z/data=!3m1!5s0x5495a0be3fc29bcf:0xecf6dc093706679f!4m12!1m6!3m5!1s0x5495a0be1546ebc9:0x832e41ac3be7a500!2sKen's+Artisan+Pizza!8m2!3d45.520579!4d-122.6370642!3m4!1s0x5495a0be1546ebc9:0x832e41ac3be7a500!8m2!3d45.520579!4d-122.6370642>Ken's Artisan Pizza<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/search/ranch+pizza/@45.5067228,-122.6551659,17.31z>Ranch PDX<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Pine+State+Biscuits+%7C+Division/@45.5047931,-122.6560818,17.47z/data=!4m5!3m4!1s0x5495a09347a627dd:0x5d8b5317b5535b9a!8m2!3d45.50473!4d-122.654552>Pine State Biscuits<\/a><\/b><br/>Biscuits & Gravy<br/>","<b><a href=https://www.google.com/maps/place/Screen+Door+Eastside/@45.5230018,-122.642267,18.59z/data=!3m1!5s0x5495a0bead0f685b:0xbd284b7ed12a6ec7!4m5!3m4!1s0x5495a0beac1053bb:0x8606af39a198e136!8m2!3d45.5230044!4d-122.6416448>Screen Door<\/a><\/b><br/>Southern<br/>","<b><a href=https://www.google.com/maps/place/Gladstone+St.+Pizza+%26+Saint+Pizza+Lounge/@45.4935233,-122.6239674,18.7z/data=!4m5!3m4!1s0x5495a079f338166d:0x4494e300a320f1ba!8m2!3d45.4934658!4d-122.6234168>Gladstone St. Pizza<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Hapa+PDX+Ramen+%26+Whiskey/@45.4933005,-122.6233715,18.09z/data=!3m1!5s0x5495a079f6e269ff:0x5938bd60e36440a5!4m5!3m4!1s0x5495a0840ee04903:0xe9aba23e94a252f9!8m2!3d45.4931869!4d-122.6227645>Hapa PDX Ramen & Whiskey<\/a><\/b><br/>Ramen<br/>","<b><a href=https://www.google.com/maps/place/Nostrana/@45.5175776,-122.651419,18.42z/data=!3m1!5s0x5495a09f62970abb:0x24e82b56a9144b9b!4m12!1m6!3m5!1s0x5495a1d188355465:0x2435a3738ae44485!2sNostrana!8m2!3d45.5176188!4d-122.6514172!3m4!1s0x5495a1d188355465:0x2435a3738ae44485!8m2!3d45.5176188!4d-122.6514172>Nostrana<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Life+of+Pie+Pizza/@45.5488077,-122.6662653,18.76z/data=!3m1!5s0x5495a73f7e90becb:0x2ebd9e2559925bb7!4m5!3m4!1s0x5495a73f81f0b5df:0x4f2f17071f435088!8m2!3d45.5493894!4d-122.6665304>Life of Pie<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Grand+Central+Bakery+-+Hawthorne+cafe/@45.5120622,-122.6431719,19.31z/data=!3m1!5s0x5495a09bd119a47b:0x8ffa6586e294d81!4m5!3m4!1s0x5495a09bd6944e85:0x5f46c5899082fcf3!8m2!3d45.5119317!4d-122.6426213>Grand Central Bakery<\/a><\/b><br/>Cafe<br/>","<b><a href=https://www.google.com/maps/place/Fried+Egg+I'm+In+Love/@45.5121648,-122.6279933,19.58z/data=!4m5!3m4!1s0x5495a091b02c239f:0x9362de10eff43d8f!8m2!3d45.512159!4d-122.6276448>Fried Egg I'm In Love<\/a><\/b><br/>Breakfast Sandwiches<br/>","<b><a href=https://www.google.com/maps/place/Apizza+Scholls/@45.5120217,-122.6132844,20.31z/data=!3m1!5s0x5495a0f393c0f42d:0xa92a166d59b0c928!4m5!3m4!1s0x5495a0f393c573a1:0xfdc1361a64a657fc!8m2!3d45.5121186!4d-122.6131304>Apizza Scholls<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Scottie's+Pizza+Parlor/@45.5046881,-122.644465,18.89z/data=!3m1!5s0x5495a082f2b6e21d:0xd3862f6dfabc2805!4m5!3m4!1s0x5495a0828d512d21:0xc937fcb4ad1b244e!8m2!3d45.5046661!4d-122.6439468>Scottie's Pizza<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Spielman+Bagels+and+Coffee+Roasters/@45.5048607,-122.6449619,19.22z/data=!4m5!3m4!1s0x5495a082ed104dbb:0xcfdc2d4cf033b04f!8m2!3d45.5049635!4d-122.6442227>Spielman Bagels<\/a><\/b><br/>Bagels<br/>","<b><a href=https://www.google.com/maps/place/Pine+State+Biscuits+%7C+Alberta/@45.5588867,-122.6428701,19.43z/data=!3m1!5s0x5495a6dff7694799:0xc2f5253e04f56a51!4m12!1m6!3m5!1s0x5495a6dff7ce49d1:0x560dd6f5f54e1bb0!2sGreat+Notion+Brewing+-+Alberta!8m2!3d45.5588585!4d-122.6426192!3m4!1s0x5495a6dff9e5058d:0x16c46437f9ddd377!8m2!3d45.5589918!4d-122.6427359>Pine State Biscuits<\/a><\/b><br/>Biscuits & Gravy<br/>","<b><a href=https://www.google.com/maps/place/Eem+-+Thai+BBQ+%26+Cocktails/@45.5507692,-122.667055,18.18z/data=!4m12!1m6!3m5!1s0x5495a6dff7ce49d1:0x560dd6f5f54e1bb0!2sGreat+Notion+Brewing+-+Alberta!8m2!3d45.5588585!4d-122.6426192!3m4!1s0x5495a75a2a3cad39:0x864d1c31d67196fd!8m2!3d45.5506961!4d-122.6665013>Eem Thai BBQ & Cocktails<\/a><\/b><br/>Thai<br/>","<b><a href=https://www.google.com/maps/place/Bar+Bar/@45.5515279,-122.6756134,18.41z/data=!3m1!5s0x5495a76a4d9a3ccb:0x496d3c12fe6b3c54!4m12!1m6!3m5!1s0x5495a76a4c4ec463:0xa13fff0343ed5bf!2sMississippi+Studios!8m2!3d45.5514423!4d-122.6756694!3m4!1s0x5495a76a4da40001:0x42c922768f618961!8m2!3d45.5515015!4d-122.6757729>Bar Bar<\/a><\/b><br/>Burgers<br/>","<b><a href=https://www.google.com/maps/place/Pip's+Original+Doughnuts+%26+Chai/@45.548324,-122.6143398,18.23z/data=!3m1!5s0x5495a6d2c83ea45b:0xeb4db1fabd74b5b5!4m5!3m4!1s0x5495a6d2c8494931:0xb0ca4c4b82cf63eb!8m2!3d45.5483794!4d-122.6138045>Pip's Original Doughnuts and Chai<\/a><\/b><br/>Donuts, Chai<br/>","<b><a href=https://www.google.com/maps/place/Grand+Central+Bakery+-+Beaumont+cafe/@45.5482681,-122.6174054,18.26z/data=!4m5!3m4!1s0x5495a6d317b0523b:0xaaeab17e2dccaaef!8m2!3d45.5482013!4d-122.6170548>Grand Central Bakery<\/a><\/b><br/>Cafe<br/>","<b><a href=https://www.google.com/maps/place/Best+Baguette/@45.4971746,-122.5776544,18.13z/data=!4m5!3m4!1s0x5495a049d1ade44d:0xae5a29db0fc24304!8m2!3d45.4971298!4d-122.5772523>Best Baguette<\/a><\/b><br/>Vietnamese Bánh Mi<br/>","<b><a href=https://www.google.com/maps/place/Rose+VL+Deli/@45.4973818,-122.5973327,18.43z/data=!3m1!5s0x5495a0424ecdc09b:0x8d3367d19a2609b3!4m5!3m4!1s0x0:0xb559d8687ef3ff83!8m2!3d45.4971597!4d-122.5966769>Rose VL Deli<\/a><\/b><br/>Vietnamese Bánh Mi & Soups<br/>Limited Daily Menu","<b><a href=https://www.google.com/maps/place/HA+%26+VL+Vietnamese+Noodle+Soup/@45.5025758,-122.5789638,18.76z/data=!3m1!5s0x5495a048fc4420a7:0xcca61132df517f24!4m5!3m4!1s0x5495a04c3de68bd1:0xb7873ecee4585442!8m2!3d45.5026581!4d-122.578503>HA & VL Deli<\/a><\/b><br/>Vietnamese Bánh Mi & Soups<br/>Limited Daily Menu","<b><a href=https://www.google.com/maps/place/Siri+Thai/@45.4968599,-122.6091812,18.18z/data=!3m1!5s0x5495a0661c918a5b:0xc1d7fce03a1267c4!4m12!1m6!3m5!1s0x5495a04c3de68bd1:0xb7873ecee4585442!2sHA+%26+VL+Vietnamese+Noodle+Soup!8m2!3d45.5026581!4d-122.578503!3m4!1s0x5495a0661cf2bc83:0x3ca811fe08f8e4b3!8m2!3d45.497303!4d-122.608199>Siri Thai<\/a><\/b><br/>Thai<br/>","<b><a href=https://www.google.com/maps/place/Pad+Thai+Kitchen/@45.5169646,-122.6430323,16.92z/data=!3m1!5s0x5495a097edf9c5e9:0x7977de12e43d8a69!4m12!1m6!3m5!1s0x5495a04c3de68bd1:0xb7873ecee4585442!2sHA+%26+VL+Vietnamese+Noodle+Soup!8m2!3d45.5026581!4d-122.578503!3m4!1s0x0:0x46fd9f4c936972f1!8m2!3d45.5166513!4d-122.6422827>Pad Thai Kitchen<\/a><\/b><br/>Thai<br/>Big portions","<b><a href=https://www.google.com/maps/place/Kala+Noodle+and+Grill/@45.516339,-122.6398352,18.48z/data=!3m1!5s0x5495a048fc4420a7:0xcca61132df517f24!4m12!1m6!3m5!1s0x5495a04c3de68bd1:0xb7873ecee4585442!2sHA+%26+VL+Vietnamese+Noodle+Soup!8m2!3d45.5026581!4d-122.578503!3m4!1s0x0:0xdd45ec9ebf3d7026!8m2!3d45.5163163!4d-122.6392449>Kala Noodle and Grill<\/a><\/b><br/>Thai<br/>","<b><a href=https://www.google.com/maps/place/Baby+Doll+Pizza/@45.519281,-122.6365279,19.73z/data=!3m1!5s0x5495a095f7d9e6eb:0xb008927395728b92!4m12!1m6!3m5!1s0x5495a04c3de68bd1:0xb7873ecee4585442!2sHA+%26+VL+Vietnamese+Noodle+Soup!8m2!3d45.5026581!4d-122.578503!3m4!1s0x5495a095f7a03a3d:0x3288d75ae0340e95!8m2!3d45.5194435!4d-122.6364823>Baby Doll Pizza<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Grand+Central+Bakery+-+Sellwood+cafe/@45.4656951,-122.653008,18.9z/data=!3m1!5s0x54950adb6a1f3ea7:0x713b9a2300e9108d!4m12!1m6!3m5!1s0x5495a0be1546ebc9:0x832e41ac3be7a500!2sKen's+Artisan+Pizza!8m2!3d45.520579!4d-122.6370642!3m4!1s0x0:0x46d1ae1645ef0a6c!8m2!3d45.465859!4d-122.653216>Grand Central Bakery<\/a><\/b><br/>Cafe<br/>","<b><a href=https://www.google.com/maps/place/Papa+Haydn/@45.4800552,-122.6489555,17.03z/data=!3m1!5s0x54950a933b64f5b7:0x59e8125c675da585!4m12!1m6!3m5!1s0x5495a0be1546ebc9:0x832e41ac3be7a500!2sKen's+Artisan+Pizza!8m2!3d45.520579!4d-122.6370642!3m4!1s0x54950a933b7d35ad:0xd3eb36b85880156b!8m2!3d45.4803808!4d-122.6497351>Papa Haydn<\/a><\/b><br/>Fine Dining<br/>","<b><a href=https://www.google.com/maps/place/Teote+House+Cafe/@45.5111227,-122.6538573,18.92z/data=!4m12!1m6!3m5!1s0x54950b4700fac5d9:0x800e88ca47f0761a!2sBroken+Robot+Coffee!8m2!3d45.4931834!4d-122.6361854!3m4!1s0x5495a09fcd4ec5e9:0xc6af88e1598cb106!8m2!3d45.5111917!4d-122.6538112>Teote House Cafe<\/a><\/b><br/>Latin American<br/>","<b><a href=https://www.google.com/maps/place/Henry+Higgins+Boiled+Bagels/@45.5260388,-122.6503103,16.8z/data=!3m1!5s0x5495a0be3fc29bcf:0xecf6dc093706679f!4m12!1m6!3m5!1s0x5495a0be1546ebc9:0x832e41ac3be7a500!2sKen's+Artisan+Pizza!8m2!3d45.520579!4d-122.6370642!3m4!1s0x5495a0b75665982b:0xc474606436364795!8m2!3d45.5268982!4d-122.6467914>Henry Higgins Boiled Bagels<\/a><\/b><br/>Bagels<br/>","<b><a href=https://www.google.com/maps/place/Shalom+Y'all/@45.5142366,-122.6652814,16.85z/data=!3m1!5s0x54950a0a2d50d705:0xffeb24311bde3692!4m12!1m6!3m5!1s0x5495a198315a1763:0x8e2808c478307403!2sAway+Days+Brewing+Co!8m2!3d45.5119731!4d-122.6555745!3m4!1s0x54950a0bd2e5a2c3:0x17d9cf5029bd95bd!8m2!3d45.5151975!4d-122.6643929>Shalom Y'all<\/a><\/b><br/>Mediterranean<br/>","<b><a href=https://www.google.com/maps/place/Otto's+Sausage+Kitchen+%26+Meat+Market/@45.4792124,-122.6193279,18.72z/data=!3m1!5s0x54950aa11591d5e3:0xa52230a1c69181cf!4m12!1m6!3m5!1s0x5495a198315a1763:0x8e2808c478307403!2sAway+Days+Brewing+Co!8m2!3d45.5119731!4d-122.6555745!3m4!1s0x54950aa13f953447:0xe63a9c7bed35a9e2!8m2!3d45.479006!4d-122.6196967>Otto's Sausage Kitchen & Meat Market<\/a><\/b><br/>German Deli<br/>","<b><a href=https://www.google.com/maps/place/Kasbah+Moroccan+Cafe/@45.5245007,-122.6727504,19.62z/data=!3m1!5s0x54950a00a323aad1:0xef515a6aa921ef42!4m5!3m4!1s0x54950a00a4616ac3:0x9b77281c734e689f!8m2!3d45.5246563!4d-122.6726466>Kasbah Moroccan Cafe<\/a><\/b><br/>Moroccan<br/>","<b><a href=https://www.google.com/maps/place/Portland+City+Grill/@45.5220896,-122.6765145,18.37z/data=!3m1!5s0x54950bbb2dc62f5f:0x31c8e33f2abf6b51!4m5!3m4!1s0x54950a06b0fad621:0x60ea32db79c16dcc!8m2!3d45.5222146!4d-122.6759475>Portland City Grill<\/a><\/b><br/>Fine Dining<br/>Big Pink ","<b><a href=https://www.google.com/maps/place/Pizza+Thief/@45.5366099,-122.7054751,18.28z/data=!3m1!5s0x549509e62a261d4f:0xf913d1bde05b3a1a!4m5!3m4!1s0x549509c7716ba527:0xf0e0c444404be709!8m2!3d45.5367187!4d-122.7053356>Pizza Thief<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Ranch+PDX,+NW+21st/@45.5293689,-122.694241,19.21z/data=!4m5!3m4!1s0x54950900faca8051:0x1fd61785b69f65c1!8m2!3d45.5294493!4d-122.6944047>Ranch PDX<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Life+of+Pie/@45.5350375,-122.6989529,19.94z/data=!3m1!5s0x549509e5b5c5742f:0xcffc5419c06cb8ca!4m5!3m4!1s0x549509c3c2d0b945:0xde5fee1b0f574dd6!8m2!3d45.5349836!4d-122.6989052>Life of Pie<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Andina/@45.5263083,-122.6844406,18.01z/data=!4m5!3m4!1s0x549509f8b8e1b5d5:0x2b06087b5044d20f!8m2!3d45.526334!4d-122.6846031>Andina<\/a><\/b><br/>Peruvian Fine Dining<br/>","<b><a href=https://www.google.com/maps/place/Toki+Restaurant/@45.521406,-122.6835384,18.91z/data=!3m1!5s0x54950a036a088a6b:0xef3633536e1997db!4m5!3m4!1s0x5495a17b7a3a5d2d:0x59707aacb35e9d43!8m2!3d45.5212891!4d-122.6835094>Toki<\/a><\/b><br/>Korean<br/>","<b><a href=https://www.google.com/maps/place/Lil'+Shalom/@45.521406,-122.6835384,18.91z/data=!3m1!5s0x54950a0344bd615f:0x6d9c3bcff445ac99!4m5!3m4!1s0x0:0xe983f08ab65d71e7!8m2!3d45.5210496!4d-122.683493>Lil' Shalom<\/a><\/b><br/>Mediterranean<br/>","<b><a href=https://www.google.com/maps/place/Tokyo+Sando/@45.5204138,-122.6732347,17.92z/data=!4m5!3m4!1s0x0:0x309d4acaa41806bd!8m2!3d45.5204018!4d-122.6734935>Tokyo Sando<\/a><\/b><br/>Japanese Sandwich <br/>Food Cart","<b><a href=https://www.google.com/maps/place/Mother's+Bistro+%26+Bar/@45.521864,-122.6734761,18.24z/data=!4m5!3m4!1s0x54950a06702a5de5:0x880b0bcd938f8871!8m2!3d45.5221859!4d-122.673824>Mother's Bistro & Bar<\/a><\/b><br/>Country-chic<br/>","<b><a href=https://www.google.com/maps/place/Bertie+Lou's+Cafe/@45.4651227,-122.6473313,18.84z/data=!3m1!5s0x54950ac5154bb611:0x8fd9e38285665128!4m5!3m4!1s0x54950ac5151972bf:0xecfa5f57eb04de62!8m2!3d45.4649227!4d-122.6471948>Bertie Lou's Cafe<\/a><\/b><br/>Breakfast Restaurant<br/>","<b><a href=https://www.google.com/maps/place/Henry+Higgins+Boiled+Bagels/@45.4644811,-122.6528486,18.63z/data=!3m1!5s0x5495a090461653d5:0x23658f47d4aef4e5!4m5!3m4!1s0x54950adafd2c124d:0x47744b894b3c4bd4!8m2!3d45.4644205!4d-122.6524051>Henry Higgins Boiled Bagels<\/a><\/b><br/>Bagels<br/>","<b><a href=https://www.google.com/maps/place/Wei+Wei+-+A+Taste+Of+Taiwan/@45.46802,-122.6533017,18.46z/data=!3m1!5s0x54950ac34a370adf:0xb1d3d919198b24ed!4m5!3m4!1s0x54950ac34a096657:0x4e06174e877fbe24!8m2!3d45.4679885!4d-122.6532734>Wei Wei - A Taste Of Taiwan<\/a><\/b><br/>Taiwanese<br/>","<b><a href=https://www.google.com/maps/place/a+Cena+Ristorante/@45.4688059,-122.6534247,18.5z/data=!3m1!5s0x54950ac33bf4e02b:0xabefc286cd634d2d!4m5!3m4!1s0x54950ac33b9034a9:0xbcce989b4d21b4ce!8m2!3d45.4687501!4d-122.6527056>a Cena Ristorante<\/a><\/b><br/>Italian<br/>","<b><a href=https://www.google.com/maps/place/MidCity+SmashBurger/@45.5192357,-122.6558404,18.26z/data=!3m1!5s0x5495a0a41ae03fdf:0xdde69d2f413c6746!4m5!3m4!1s0x5495a161a424a01b:0x725f918abf25cd1e!8m2!3d45.5194873!4d-122.6552878>MidCity SmashBurger<\/a><\/b><br/>Burgers<br/>","<b><a href=https://www.google.com/maps/place/The+House+of+B%C3%A1nh+M%C3%AC+(The+HOB)/@45.526863,-122.5850453,17.7z/data=!3m1!5s0x5495a11aa2da07a1:0x346ed1fe82b20502!4m5!3m4!1s0x5495a11aa2d9e65d:0x722350b7218dd0c4!8m2!3d45.5267332!4d-122.5847911>The House of Bánh Mì<\/a><\/b><br/>Vietnamese Bánh Mi<br/>","<b><a href=https://www.google.com/maps/place/CHAR/@45.4925297,-122.602051,18.77z/data=!3m1!5s0x5495a06b8c9f8af3:0x35b775e8720033b5!4m5!3m4!1s0x5495a1648d29cd0d:0xeeb219cac211cd76!8m2!3d45.4925635!4d-122.6016489>CHAR<\/a><\/b><br/>Pizza<br/>","<b><a href=https://www.google.com/maps/place/Nayar+Taqueria/@45.4923328,-122.6019156,19z/data=!3m1!5s0x5495a06b92a68209:0x7017dc547217f54f!4m5!3m4!1s0x5495a06b8d6d76ab:0x4725791b9a6b331c!8m2!3d45.4924528!4d-122.6021245>Nayar Taqueria<\/a><\/b><br/>Mexican<br/>","<b><a href=https://www.google.com/maps/place/Malka/@45.5050148,-122.6151695,18.89z/data=!3m1!5s0x5495a061d4d6ffdd:0xd9d583e0e48414d3!4m12!1m6!3m5!1s0x0:0x92f206e668766226!2sMalka!8m2!3d45.5051288!4d-122.6151466!3m4!1s0x0:0x92f206e668766226!8m2!3d45.5051288!4d-122.6151466>Malka<\/a><\/b><br/>Asian Fusion<br/>","<b><a href=https://www.google.com/maps/place/Tabor+Bread/@45.5122025,-122.6105163,18.17z/data=!3m1!5s0x5495a0f3ffd85c0f:0x3b8fae42de0e7472!4m5!3m4!1s0x5495a0f3ffc03b6b:0x70e555557892dc48!8m2!3d45.5121939!4d-122.6105309>Tabor Bread<\/a><\/b><br/>Bakery<br/>","<b><a href=https://www.google.com/maps/place/Wajan/@45.5234018,-122.6153785,17.57z/data=!4m5!3m4!1s0x5495a131e051ec61:0x4c555e9499cb21b8!8m2!3d45.523201!4d-122.6153131>Wajan<\/a><\/b><br/>Indonesian<br/>","<b><a href=https://www.google.com/maps/place/LoRell's+Chicken+Shack/@45.4959829,-122.6093034,17.56z/data=!4m5!3m4!1s0x0:0xd613ead921e3baac!8m2!3d45.4957639!4d-122.6084655>LoRell's Chicken Shack<\/a><\/b><br/>Fried Chicken<br/>Food Cart","<b><a href=https://www.google.com/maps/place/An+Xuy%C3%AAn+Bakery/@45.4949697,-122.607278,19.14z/data=!3m1!5s0x5495a06f2e816a7f:0x27eb8dc174f0b062!4m5!3m4!1s0x5495a06f2eac65cd:0x40c163709d9daa65!8m2!3d45.4951201!4d-122.6072791>An Xuyên Bakery<\/a><\/b><br/>Pan Asian Pacific Bakery & Deli<br/>","<b><a href=https://www.google.com/maps/place/Nudi+Noodle+Place/@45.4787495,-122.6178738,18.13z/data=!3m1!5s0x54950aa1271fd579:0xa9917a12e7a83971!4m5!3m4!1s0x0:0x532fd75c90ebb78b!8m2!3d45.4790559!4d-122.6181719>Nudi Noodle Place<\/a><\/b><br/>Asian Fusion<br/>"],null,["Kachka","Nicholas","Bete-Lukas","Guero","Ken's Artisan Pizza","Ranch PDX","Pine State Biscuits","Screen Door","Gladstone St. Pizza","Hapa PDX Ramen &amp; Whiskey","Nostrana","Life of Pie","Grand Central Bakery","Fried Egg I'm In Love","Apizza Scholls","Scottie's Pizza","Spielman Bagels","Pine State Biscuits","Eem Thai BBQ &amp; Cocktails","Bar Bar","Pip's Original Doughnuts and Chai","Grand Central Bakery","Best Baguette","Rose VL Deli","HA &amp; VL Deli","Siri Thai","Pad Thai Kitchen","Kala Noodle and Grill","Baby Doll Pizza","Grand Central Bakery","Papa Haydn","Teote House Cafe","Henry Higgins Boiled Bagels","Shalom Y'all","Otto's Sausage Kitchen &amp; Meat Market","Kasbah Moroccan Cafe","Portland City Grill","Pizza Thief","Ranch PDX","Life of Pie","Andina","Toki","Lil' Shalom","Tokyo Sando","Mother's Bistro &amp; Bar","Bertie Lou's Cafe","Henry Higgins Boiled Bagels","Wei Wei - A Taste Of Taiwan","a Cena Ristorante","MidCity SmashBurger","The House of Bánh Mì","CHAR","Nayar Taqueria","Malka","Tabor Bread","Wajan","LoRell's Chicken Shack","An Xuyên Bakery","Nudi Noodle Place"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"14px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[[45.48999519,45.51223248,45.52016639,45.49318393,45.55898328,45.46099333,45.48588495,45.49863802,45.51356588,45.51670381,45.52373582,45.5189807,45.52142688,45.53093309,45.4748178,45.51218915,45.52633196,45.49496366,45.47934367,45.48907252],[-122.6199736,-122.6385,-122.6573083,-122.6361837,-122.6444055,-122.6468407,-122.6372657,-122.6538292,-122.6605977,-122.6860358,-122.6747777,-122.674949,-122.6839418,-122.6843319,-122.6490149,-122.6178283,-122.5918566,-122.6079889,-122.6171344,-122.5957886],6,null,"Coffee",{"interactive":true,"className":"","stroke":true,"color":["#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493"],"weight":3,"opacity":0.5,"fill":true,"fillColor":["#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493","#FF1493"],"fillOpacity":0.8},null,null,["<b><a href=https://www.google.com/maps/place/Keeper+Coffee+Co/@45.490173,-122.6210377,18.12z/data=!4m12!1m6!3m5!1s0x54950b1de95b50c1:0x81cb7d42ff5e6ae7!2sKeeper+Coffee+Co!8m2!3d45.4899881!4d-122.619976!3m4!1s0x54950b1de95b50c1:0x81cb7d42ff5e6ae7!8m2!3d45.4899881!4d-122.619976>Keeper<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Coava+Coffee+Roasters/@45.5120888,-122.6396312,17.5z/data=!3m1!5s0x5495a09a7321552b:0x72568bfe16fae33b!4m5!3m4!1s0x5495a09a7241025b:0x66d8129f57be9989!8m2!3d45.5122058!4d-122.6385269>Coava<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Portland+Coffee+Roasters/@45.5201642,-122.6573173,19.72z/data=!3m1!5s0x5495a0a683162cc5:0x63361d01a7d54db0!4m5!3m4!1s0x0:0xc1b9a2c72793494f!8m2!3d45.5201674!4d-122.6573095>Portland Coffee Roasters<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Broken+Robot+Coffee/@45.4932242,-122.6362102,20.99z/data=!4m5!3m4!1s0x54950b4700fac5d9:0x800e88ca47f0761a!8m2!3d45.4931834!4d-122.6361854>Broken Robot<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Proud+Mary+Cafe/@45.5593196,-122.6444421,18.91z/data=!3m1!5s0x5495a7201c53189d:0xdf526e0eba83c8a1!4m12!1m6!3m5!1s0x5495a6dff7ce49d1:0x560dd6f5f54e1bb0!2sGreat+Notion+Brewing+-+Alberta!8m2!3d45.5588585!4d-122.6426192!3m4!1s0x0:0xf06daafd81449972!8m2!3d45.5589815!4d-122.6444064>Proud Mary<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/The+Living+Room+Coffeehouse/@45.4608555,-122.6468656,18.55z/data=!3m1!5s0x54950ad1b57e61e3:0x995ee7448c0aac57!4m12!1m6!3m5!1s0x5495a0be1546ebc9:0x832e41ac3be7a500!2sKen's+Artisan+Pizza!8m2!3d45.520579!4d-122.6370642!3m4!1s0x54950ad1ca8083f3:0xcf9ac6bcb15eb3c7!8m2!3d45.4609875!4d-122.6468429>The Living Room Coffeehouse<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Ardent+Coffee/@45.4855127,-122.6372653,18.09z/data=!4m5!3m4!1s0x54950b277e5a1871:0x6b52dc1f9a021289!8m2!3d45.4858659!4d-122.6372663>Ardent<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Rose+City+Coffee+Co./@45.4982585,-122.6541828,17.58z/data=!3m1!5s0x54950a7b667dcb7d:0xb5750f75cc57051c!4m5!3m4!1s0x54950a7b65d4b37f:0xe87831d90e1624d4!8m2!3d45.4986317!4d-122.6538286>Rose City Coffee Co<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Coava+Coffee+Roasters/@45.5127988,-122.6607641,16.78z/data=!3m1!5s0x54950a0ae93251db:0xf85f01a63e982790!4m12!1m6!3m5!1s0x5495a198315a1763:0x8e2808c478307403!2sAway+Days+Brewing+Co!8m2!3d45.5119731!4d-122.6555745!3m4!1s0x54950a0ae93e6b79:0xc63aec4f3d1b3aad!8m2!3d45.5135494!4d-122.6606018>Coava<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Coava+Coffee+Roasters/@45.5162817,-122.6864735,17.64z/data=!3m1!5s0x54950a1a4b899d81:0x553ed69baf47a942!4m5!3m4!1s0x54950a1a4b9d82c9:0x665ba137f7190544!8m2!3d45.5166045!4d-122.6860972>Coava<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Deadstock+Coffee+Roasters/@45.5234633,-122.6749867,18.89z/data=!3m1!5s0x5495a0b6899dc5d3:0x34200558bdfaeeb!4m5!3m4!1s0x54950bfd3c29a81b:0x843c92bf72e4ed1d!8m2!3d45.5237215!4d-122.6747812>Deadstock <\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Lotus+%26+Bean+Espresso+Bar/@45.5189765,-122.6754931,19z/data=!3m2!4b1!5s0x54950a0b9086815b:0xa684d4820edb61a1!4m5!3m4!1s0x54950a05e839f941:0xa32d8d8583a6ea33!8m2!3d45.5189765!4d-122.6749459>Lotus & Bean<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Never+Coffee/@45.5214486,-122.6838228,18.18z/data=!3m1!5s0x54950a033f63b60b:0x980f483fe5d1b8b6!4m5!3m4!1s0x54950b932fcf87e9:0xcb6b31ed4bd8fb7!8m2!3d45.5214054!4d-122.6839332>Never Coffee<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Sisters+Coffee+Company+in+The+Pearl+District/@45.5309299,-122.6851176,18.21z/data=!3m1!5s0x549509fdd16e9fe9:0x32da19db70052036!4m5!3m4!1s0x549509fc2b2d8753:0x84cf73f21e3cbe6d!8m2!3d45.5308966!4d-122.6843197>Sisters Coffee Co<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Fairlane+Coffee+Roasters/@45.4748694,-122.6492899,19.4z/data=!3m1!5s0x54950aea5faa042d:0x84c0a488692e9865!4m5!3m4!1s0x54950aea60721aad:0x65b9678058ec95e7!8m2!3d45.4748145!4d-122.6490132>Fairlane Coffee Roasters<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Common+Grounds+Coffeehouse/@45.5119761,-122.6183115,17.85z/data=!3m1!5s0x5495a0f3272ca529:0xac38e6bbaa10ce05!4m5!3m4!1s0x5495a0f3241b4331:0xad21a7cf6fd21900!8m2!3d45.5121842!4d-122.6178309>Common Grounds Coffeehouse<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Mudd+Works+Roastery/@45.5263162,-122.5920191,19.19z/data=!3m1!5s0x5495a11b83fc640f:0x6c6f77fd7914819!4m12!1m6!3m5!1s0x5495a0b89f687e89:0x533a5177b25363a8!2sStammtisch!8m2!3d45.5258613!4d-122.6374505!3m4!1s0x54950a5b8bdf1289:0x6ee024d18d6aae5d!8m2!3d45.5262886!4d-122.591858>Mudd Works Roastery<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Favela+Brazilian+Cafe/@45.4950278,-122.607809,18.47z/data=!4m5!3m4!1s0x5495a18dd060b0ab:0x527f518b93ee8407!8m2!3d45.4948457!4d-122.6079985>Favela Brazilian Cafe<\/a><\/b><br/>Outdoor Seating<br/>","<b><a href=https://www.google.com/maps/place/Papaccino's/@45.4794872,-122.6173353,18.46z/data=!3m1!5s0x54950aa0b23bd3e5:0xeaa01b2ddc713621!4m5!3m4!1s0x54950aa0c342ca7d:0x7e0d9b520f473c63!8m2!3d45.4793381!4d-122.6171347>Papaccino's<\/a><\/b><br/>Coffee<br/>","<b><a href=https://www.google.com/maps/place/Pieper+Cafe/@45.4892662,-122.5959432,19.53z/data=!3m1!5s0x5495a014e8f31aa7:0xe16dff7c69ba4a2f!4m5!3m4!1s0x5495a014e8627f95:0xc64f6ec08fbf3817!8m2!3d45.4890641!4d-122.595793>Pieper Cafe<\/a><\/b><br/>Coffee<br/>"],null,["Keeper","Coava","Portland Coffee Roasters","Broken Robot","Proud Mary","The Living Room Coffeehouse","Ardent","Rose City Coffee Co","Coava","Coava","Deadstock ","Lotus &amp; Bean","Never Coffee","Sisters Coffee Co","Fairlane Coffee Roasters","Common Grounds Coffeehouse","Mudd Works Roastery","Favela Brazilian Cafe","Papaccino's","Pieper Cafe"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"14px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["OSM","Esri"],["Bar","Food","Coffee"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[45.46099333,45.55899163],"lng":[-122.7089526,-122.5772681]}},"evals":[],"jsHooks":[]}</script>
+<br><br><br>
+</div>
+
+  
+<div id="experience"  class="section level3">
+<h3> ← play [ RESUME ] work → </h3>
+<img src="files/experience.png" width="100%" border="0" alt="Null">
+<br>
+<img src="resume.png" alt="resume"  align="center" width="70%" height="500px">
+<br><br><br>
+</div>
+  
+<div id="geotlbx"  class="section level3">
+<h3>GeoToolBox</h3>
+<br>
+<a href="https://github.com/laurensharwood/geo-tlbx/tree/main" target="_blank"><b>geo-tlbx</b></a> repository (repo) 
+<br>
+Within this repo:
+<ul>
+<li><a href="https://github.com/laurensharwood/geo-tlbx/blob/main/tlbook/tlbook_1_intro.md" target="_blank">Geospatial toolbook</a> aims to provide high-level information and free resources to make geospatial data, analysis, and insights more accessible.</li>  
+<li><b>_utils.py</b> files (general, db, vector, raster, geo, gee, plot) have functions to import into another notebook or python script.</li>  
+<li>code from <a href="https://github.com/laurensharwood/geo-tlbx/tree/main/emLab-projects" target="_blank">emLab-projects</a></li>
+<li>code for <a href="https://github.com/laurensharwood/geo-tlbx/tree/main/geo-libraries" target="_blank">geospatial libraries</a> (ArcPy, GDAL, GeoWombat, Google Earth Engine)</li>
+</ul>
+
+
+<br><br>
+For example, <a href="https://github.com/laurensharwood/geo-tlbx/blob/main/muni_working.ipynb" target="_blank">this Jupyter notebook</a>
+was used to download and extract information for an
+<a href="https://www.arcgis.com/home/item.html?id=055579af9fb9447c93742bf58aca8db4" target="_blank">ArcGIS Online Web Map of Trail POIs around SB</a> 
+<ul>
+  <li>Point of Interest (POI), roads, and streams data were downloaded from OpenStreetMap (using the overpy Python package) 
+  and a digitial elevation model (DEM) was downloaded from USGS 3DEP (using the py3dep Python package). </li>
+</ul>
+
+<br><br>
+<iframe src="https://www.arcgis.com/apps/mapviewer/index.html?webmap=055579af9fb9447c93742bf58aca8db4" height="700px" width="1100px" frameborder="0" style="border:0" allowfullscreen>iFrames are not supported on this page.</iframe>
+<br><br><br><br>
+
+
+<br><br><br><br><br><br><br><br><br>
+<br><br>
+</div>
+
+
+<div id="emlab"  class="section level3">
+<h3>Environmental Markets Lab</h3>
+<p><h4>Segmenting crop fields across Paraguay (2023-2024)</h4> 
+<a href="https://www.github.com/laurensharwood/CEL_CropSeg/" target="_blank">Programmed</a> a <a href="https://laurensharwood.github.io/files/segmentation_pres.pdf" target="_blank">workflow</a> to:
+<ul>
+<li> train a fully convolutional <a href="https://github.com/jgrss/cultionet" target="_blank">neural network</a> (from monthly Sentinel-2 / Landsat images and manually digitized crop fields) to predict crop field extents and boundaries,</li>
+<li>transform semantic segmentations of crop fields to individual instances of crop fields, </li>
+<li>assess model accuracy, and</li>
+<li>plot each field's average greenness over time in an interactive web-map.</li>
+</ul>
+</p>
+<p><h4>Monitoring rainwater harvesting technology adoption in the Sahel (2023-2024)</h4>
+<ul>
+<li>Monitored the <a href="files/demilunes_pres.pdf" target="_blank">adoption of demilunes</a>, semicurcular catchment basins, in the Sahel.</li>
+<li><a href="files/emLab_degradedLands.pdf" target="_blank">Classified glacis/degraded land</a> to determine areas suitable for demilune adoption.</li>
+<li>Presented at the 2023 <a href="https://www.geofield.org/events/virtual-convening-2023-05-24" target="_blank">Geofield Virtual Convening.</a></li>
+</ul></p>
+
+<p><h4>Detecting sustainable agriculture practices in Central America (2022)</h4>
+<ul>
+<li>Assessed the ability to detect water-smart agriculture practices, cover crops and crop residue retention, on treatment vs control plots in Central America from 2016-2019 using a time-series of Sentinel-2 derived vegetation indices.</li>
+<li>Created an interactive <a href="https://github.com/laurensharwood/emLab-CRS"target="_blank">notebook</a> for the client to see individual treatment and control plot greenness over time.</li>
+</ul></p>
+<br><br><br><br><br><br>
+</div>
+
+
+<div id="PSU"  class="section level3">
+<h3>Portland State University</h3>
+<h4>MS, Geography: 2021</h4>
+<p><b>Master's Thesis</b>: Modeling Environmental Factors Related to Drought-Induced Tree Mortality Based on Lidar and Hyperspectral Imagery<br>
+<ul>
+<li><p><a href="https://pdxscholar.library.pdx.edu/cgi/viewcontent.cgi?article=6946&amp;context=open_access_etds" target="_blank">Master's Thesis</a> (2021)<br></p></li>
+<li><p>Thesis Defense <a href="https://laurensharwood.github.io/files/SharwoodThesisDefense.pdf" target="_blank">Presentation</a> (2021)</p></li>
+</ul></p>
+<br>
+<p><b>Class projects</b>:<br>
+<ul>
+<li><p><a href="files/forest_ecology_proj.pdf"target="_blank">Research Brief</a> about remote sensing's role in Forest Management, for Forest Ecology (2019)</p></li>
+<li><p><a href="https://web.pdx.edu/~lshar2/Geog597/597_SharwoodL_Lab7.html#/" target="_blank">Random Forest Classification</a> of powerlines using surface height rasters from lidar, for Spatial Quantitative Analysis II (2018) <br></p></li>
+<li><p><a href="https://web.pdx.edu/~lshar2/Geog597/597_SharwoodL_Labs5_6.html#/" target="_blank">Spatial Hedonic Regression</a> to predict housing prices combining census data with other remotely sensed data, for Spatial Quantitative Analysis II (2018) <br></p></li>
+</ul></p>
+<br>
+<p>
+<b>Teaching Assistant (TA)</b> for:<br>
+<ul>
+<li><p><a href="https://web.pdx.edu/~jduh/courses/geog492w11/" target="_blank">GEOG 488/588</a> GIS II: Advanced GIS</p></li>
+<li><p><a href="https://www.pdx.edu/geography/sites/geography.web.wdt.pdx.edu/files/2021-01/GEOG380_Syllabus.pdf" target="_blank">GEOG 380</a>: Intro to Maps and Geographic Information</p></li>
+</ul>
+</p>
+  
+<br><br><br><br><br><br>
+</div>
+
+<div id="ucsb"  class="section level3">
+<h3>UC Santa Barbara</h3>
+<h4>BA, Environmental Studies: 2016</h4>  
+<h4>BA, Geography (GIS Emphasis): 2016</h4>  
+Honors Program: High Honors<br><br>
+<p><b>Class projects</b>:<br>
+<ul>
+<li><p><a href="files/115c.png" target="_blank">Predicting rice yield</a> individual project poster, for RS of the Envt III (2016)</p></li>
+<li><p><a href="files/176c.jpg" target="_blank">Modeling Zika infections </a> group project poster, for GIS III (2016)</p></li>
+<li><p><a href="files/EIR_writing_samp.pdf"target="_blank">Environmental Impact Report (EIR) </a>Biological Resource writing sample, for Environmental Impact Analysis (2015)</p></li>
+</ul></p>
+<br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+
+
+</body>
+</html>
+
+  

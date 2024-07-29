@@ -1,0 +1,6 @@
+title: <center><font size="30">Lauren Sharwood</font></center>
+author: <center>Remote Sensing Analyst</center>
+output: 
+  html_document:
+    theme: journal
+    css: styles.css
