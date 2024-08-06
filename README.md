@@ -1,5 +1,5 @@
-# [Portfolio](https://laurensharwood.github.io)  
+# [My Portfolio](https://laurensharwood.github.io)  
 
+# [Geospatial Tool-Book](https://laurensharwood.github.io/geospatial-toolbook/)   
 
-
-# [Geospatial Toolbox](https://github.com/laurensharwood/geo-tlbx/)  
+# [Geospatial Tool-Box Code Repository](https://github.com/laurensharwood/geo-tlbx/)  
